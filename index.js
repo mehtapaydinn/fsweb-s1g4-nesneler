@@ -209,3 +209,69 @@ module.exports = {
 	AnahtardanDegerlendirmeAl,
 	SonDegerlendirmeyiAl,
 }
+
+
+
+/////////////// Görev 1a ///////////////////
+function MenuElemaniOlustur(isim, fiyat, kategori) {
+    return { isim, fiyat, kategori };
+}
+
+/////////////// Görev 2 ///////////////////
+burger.indirim = function(kisiTipi) {
+    if (kisiTipi === "öğretmen" || kisiTipi === "öğrenci") {
+        return this.fiyat * 0.75; // %25 indirim
+    } else {
+        return this.fiyat * 0.90; // %10 indirim
+    }
+};
+
+/////////////// Görev 3 ///////////////////
+// Ahmet'in geribildirimini görmek için:
+console.log(degerlendirmeler.find(d => d.isim === "Ahmet").geribildirim);
+
+/////////////// Görev 4 ///////////////////
+// Reyna'nın geribildirimi boş, dolduralım
+degerlendirmeler.find(d => d.isim === "Reyna").geribildirim = 
+    "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım";
+console.log(degerlendirmeler);
+
+/////////////// Görev 5 ///////////////////
+function DegerlendirmeEkle(dizi, isim, puan, geribildirim) {
+    const yeniDegerlendirme = { isim, puan, geribildirim };
+    dizi.push(yeniDegerlendirme);
+    return dizi;
+}
+
+/////////////// Görev 6 ///////////////////
+function AnahtardanDegerlendirmeAl(dizi, indeks) {
+    const d = dizi[indeks];
+    return `${d.isim} isimli kişi ${d.puan} puan verdi ve şunları yazdı: ${d.geribildirim}`;
+}
+
+/////////////// Görev 7 ///////////////////
+function SonDegerlendirmeyiAl(dizi) {
+    const d = dizi[dizi.length - 1];
+    return `${d.isim} isimli kişi ${d.puan} puan verdi ve şunları yazdı: ${d.geribildirim}`;
+}
+
+/////////////// BONUS 1 ///////////////////
+function PuanaGoreDegerlendirmeAl(dizi, puan) {
+    return dizi.filter(d => d.puan >= puan && d.puan < puan + 1);
+}
+
+/////////////// BONUS 2 ///////////////////
+function UzunDegerlendirmeleriAl(dizi) {
+    return dizi.filter(d => d.geribildirim.split(" ").length > 15);
+}
+
+/////////////// BONUS 3 ///////////////////
+function arabaYapici(kilometre) {
+    return {
+        kilometreSayaci: kilometre,
+        surus: function(mesafe) {
+            this.kilometreSayaci += mesafe;
+            return this.kilometreSayaci;
+        }
+    };
+}
